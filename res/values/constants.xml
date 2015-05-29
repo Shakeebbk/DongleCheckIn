@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="status_weight">1</integer>
+	<integer name="timestamp_weight">1</integer>
+	<integer name="location_weight">1</integer>
+</resources>

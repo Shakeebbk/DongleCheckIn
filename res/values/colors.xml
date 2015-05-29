@@ -1,0 +1,16 @@
+<resources>
+    <color name="top_item">#a6c</color>
+    <color name="bottom_item">#f44</color>
+    <color name="bottom_item_alt">#c00</color>
+    <color name="green">#009530</color>
+    <color name="lgreen">#4fa600</color>
+    <color name="sgreen">#87d300</color>
+    <color name="fred">#b10043</color>
+    <color name="cgray">#626469</color>
+    <color name="lgray">#9fa0a4</color>
+    <color name="blue">#006000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="delete">#C35817</color>
+    <color name="mRead">#CC6600</color>
+    <color name="black">#000000</color>
+</resources>
