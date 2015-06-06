@@ -6,5 +6,16 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_dcialarm">DCIAlarm</string>
     <string name="title_activity_dcisettings">DCISettings</string>
+    <string name="alarm1enable"></string>
+    <string name="alarm2enable"></string>
+    <string name="alarm3enable"></string>
+    <string name="OOFenable"></string>
+    <string name="OOFstart">From</string>
+    <string name="OOFend">To</string>
+    
+    <string name="alarm1element">Alarm 1</string>
+    <string name="alarm2element">Alarm 2</string>
+    <string name="alarm3element">Alarm 3</string>
+    <string name="OOFelement">Out Of Office Settings</string>
 
 </resources>

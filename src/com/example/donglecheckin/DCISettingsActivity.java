@@ -39,7 +39,7 @@ public class DCISettingsActivity extends Activity {
 		protected void onCreate(Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
-			
+			getActionBar().setDisplayHomeAsUpEnabled(true);
 			//Get the Prefs
 			final SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
 			
@@ -89,7 +89,7 @@ public class DCISettingsActivity extends Activity {
 					Log.d("DCISettingsActivity", "onClick");
 					// TODO Auto-generated method stub
 					if(Alarm1Enabled) {
-						TimePickerDialog timePicker = new TimePickerDialog(v.getContext(), mOnTimeSetListener1, Alarm1.get(Calendar.HOUR_OF_DAY), Alarm1.get(Calendar.MINUTE), false);
+						TimePickerDialog timePicker = new TimePickerDialog(v.getContext(), mOnTimeSetListener1, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), false);
 						timePicker.show();
 					}
 					else {
@@ -101,7 +101,80 @@ public class DCISettingsActivity extends Activity {
 				}
 			});
 			
-
+			final CheckBox alarm2EnabledCheckBox = (CheckBox) findViewById(R.id.checkBox2);
+			alarm2EnabledCheckBox.setChecked(Alarm2Enabled);
+			final TextView alarm2TextView = (TextView) findViewById(R.id.alarm2Text);
+			updateTextView(alarm2TextView, Alarm2Enabled, Alarm2, true);
+			
+			alarm2EnabledCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					// TODO Auto-generated method stub
+					Alarm2Enabled = isChecked;
+					
+					final SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putBoolean("Alarm2Enabled", Alarm2Enabled);
+					editor.commit();
+					
+					alarm2TextView.performClick();
+				}
+			});
+			alarm2TextView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Log.d("DCISettingsActivity", "onClick");
+					// TODO Auto-generated method stub
+					if(Alarm2Enabled) {
+						TimePickerDialog timePicker = new TimePickerDialog(v.getContext(), mOnTimeSetListener2, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), false);
+						timePicker.show();
+					}
+					else {
+						Intent intent = new Intent(getApplicationContext(), DCIAlarm.class);
+						PendingIntent operation = PendingIntent.getActivity(getApplicationContext(), 2, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+						cancelAlarm(getApplicationContext(), operation);
+					}
+					updateTextView(alarm2TextView, Alarm2Enabled, Alarm2, true);
+				}
+			});
+			
+			final CheckBox alarm3EnabledCheckBox = (CheckBox) findViewById(R.id.checkBox3);
+			alarm3EnabledCheckBox.setChecked(Alarm3Enabled);
+			final TextView alarm3TextView = (TextView) findViewById(R.id.alarm3Text);
+			updateTextView(alarm3TextView, Alarm3Enabled, Alarm3, true);
+			
+			alarm3EnabledCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					// TODO Auto-generated method stub
+					Alarm3Enabled = isChecked;
+					
+					final SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putBoolean("Alarm3Enabled", Alarm3Enabled);
+					editor.commit();
+					
+					alarm3TextView.performClick();
+				}
+			});
+			alarm3TextView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Log.d("DCISettingsActivity", "onClick");
+					// TODO Auto-generated method stub
+					if(Alarm3Enabled) {
+						TimePickerDialog timePicker = new TimePickerDialog(v.getContext(), mOnTimeSetListener3, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), false);
+						timePicker.show();
+					}
+					else {
+						Intent intent = new Intent(getApplicationContext(), DCIAlarm.class);
+						PendingIntent operation = PendingIntent.getActivity(getApplicationContext(), 3, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+						cancelAlarm(getApplicationContext(), operation);
+					}
+					updateTextView(alarm3TextView, Alarm3Enabled, Alarm3, true);
+				}
+			});
+			
 			final CheckBox OOFEnabledCheckBox = (CheckBox) findViewById(R.id.checkBox4);
 			OOFEnabledCheckBox.setChecked(OOFEnabled);
 			
@@ -131,7 +204,7 @@ public class DCISettingsActivity extends Activity {
 					Log.d("DCISettingsActivity", "onClick");
 					// TODO Auto-generated method stub
 					if(OOFEnabled) {
-						DatePickerDialog datePicker = new DatePickerDialog(v.getContext(), mOnDateSetListener1, startcalendar.get(Calendar.YEAR), startcalendar.get(Calendar.MONTH), startcalendar.get(Calendar.DAY_OF_MONTH));
+						DatePickerDialog datePicker = new DatePickerDialog(v.getContext(), mOnDateSetListener1, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 						datePicker.show();
 					}
 					updateTextView(OOFStartTextView, OOFEnabled, startcalendar, false);
@@ -143,7 +216,7 @@ public class DCISettingsActivity extends Activity {
 					Log.d("DCISettingsActivity", "onClick");
 					// TODO Auto-generated method stub
 					if(OOFEnabled) {
-						DatePickerDialog datePicker = new DatePickerDialog(v.getContext(), mOnDateSetListener2, endcalendar.get(Calendar.YEAR), endcalendar.get(Calendar.MONTH), endcalendar.get(Calendar.DAY_OF_MONTH));
+						DatePickerDialog datePicker = new DatePickerDialog(v.getContext(), mOnDateSetListener2, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 						datePicker.show();
 					}
 					updateTextView(OOFEndTextView, OOFEnabled, endcalendar, false);
@@ -224,6 +297,62 @@ public class DCISettingsActivity extends Activity {
 			}
 		};
 		
+		private TimePickerDialog.OnTimeSetListener mOnTimeSetListener2 = new TimePickerDialog.OnTimeSetListener() {
+			@Override
+			public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+				Log.d("DCISettingsActivity", "onTimeSet hourOfDay "+hourOfDay+" minute "+minute);
+				Alarm2.setTimeInMillis(System.currentTimeMillis());
+				Log.d("DCISettingsActivity", "onTimeSet:Date:"+Alarm2.get(Calendar.YEAR)+":"+Alarm2.get(Calendar.HOUR)+":"+Alarm2.get(Calendar.DAY_OF_MONTH));
+				Log.d("DCISettingsActivity", "onTimeSet:Time"+Alarm2.get(Calendar.HOUR_OF_DAY)+":"+Alarm2.get(Calendar.MINUTE));
+				Alarm2.set(Calendar.HOUR_OF_DAY, hourOfDay);
+				Alarm2.set(Calendar.MINUTE, minute);
+				Alarm2.set(Calendar.SECOND, 0);
+				Log.d("DCISettingsActivity", "onTimeSet:Date:"+Alarm2.get(Calendar.YEAR)+":"+Alarm2.get(Calendar.HOUR)+":"+Alarm2.get(Calendar.DAY_OF_MONTH));
+				Log.d("DCISettingsActivity", "onTimeSet:Time"+Alarm2.get(Calendar.HOUR_OF_DAY)+":"+Alarm2.get(Calendar.MINUTE));
+								
+				final SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putInt("Alarm2Hour", Alarm2.get(Calendar.HOUR_OF_DAY));
+				editor.putInt("Alarm2Mins", Alarm2.get(Calendar.MINUTE));
+				editor.commit();
+				// update txtTime with the selected time
+				updateTextView((TextView)findViewById(R.id.alarm2Text), Alarm2Enabled, Alarm2, true);
+				
+				//setAlarm
+				Intent intent = new Intent(getApplicationContext(), DCIAlarm.class);
+				PendingIntent operation = PendingIntent.getActivity(getApplicationContext(), 2, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+				setAlarm(getApplicationContext(), Alarm2, operation);
+			}
+		};
+		
+		private TimePickerDialog.OnTimeSetListener mOnTimeSetListener3 = new TimePickerDialog.OnTimeSetListener() {
+			@Override
+			public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+				Log.d("DCISettingsActivity", "onTimeSet hourOfDay "+hourOfDay+" minute "+minute);
+				Alarm3.setTimeInMillis(System.currentTimeMillis());
+				Log.d("DCISettingsActivity", "onTimeSet:Date:"+Alarm3.get(Calendar.YEAR)+":"+Alarm3.get(Calendar.HOUR)+":"+Alarm3.get(Calendar.DAY_OF_MONTH));
+				Log.d("DCISettingsActivity", "onTimeSet:Time"+Alarm3.get(Calendar.HOUR_OF_DAY)+":"+Alarm3.get(Calendar.MINUTE));
+				Alarm3.set(Calendar.HOUR_OF_DAY, hourOfDay);
+				Alarm3.set(Calendar.MINUTE, minute);
+				Alarm3.set(Calendar.SECOND, 0);
+				Log.d("DCISettingsActivity", "onTimeSet:Date:"+Alarm3.get(Calendar.YEAR)+":"+Alarm3.get(Calendar.HOUR)+":"+Alarm3.get(Calendar.DAY_OF_MONTH));
+				Log.d("DCISettingsActivity", "onTimeSet:Time"+Alarm3.get(Calendar.HOUR_OF_DAY)+":"+Alarm3.get(Calendar.MINUTE));
+								
+				final SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putInt("Alarm3Hour", Alarm3.get(Calendar.HOUR_OF_DAY));
+				editor.putInt("Alarm3Mins", Alarm3.get(Calendar.MINUTE));
+				editor.commit();
+				// update txtTime with the selected time
+				updateTextView((TextView)findViewById(R.id.alarm3Text), Alarm3Enabled, Alarm3, true);
+				
+				//setAlarm
+				Intent intent = new Intent(getApplicationContext(), DCIAlarm.class);
+				PendingIntent operation = PendingIntent.getActivity(getApplicationContext(), 3, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+				setAlarm(getApplicationContext(), Alarm3, operation);
+			}
+		};
+		
 		//set alarm method
 		private void setAlarm(Context context, Calendar alarmTime, PendingIntent operation) {
 			AlarmManager alarm = (AlarmManager) context.getSystemService(ALARM_SERVICE);
@@ -234,8 +363,12 @@ public class DCISettingsActivity extends Activity {
 			Log.d("DCISettingsActivity","setAlarm:Current system time-"+System.currentTimeMillis());
 			Log.d("DCISettingsActivity","setAlarm:Alarm time-"+alarmTime.getTimeInMillis());
 
+			if(alarmTime.getTimeInMillis() < System.currentTimeMillis()) {
+				//If time has passed, set alarm the next day
+				alarmTime.set(alarmTime.get(Calendar.YEAR), alarmTime.get(Calendar.MONTH), 1+alarmTime.get(Calendar.DAY_OF_MONTH));
+			}
 			long triggerAtMillis = alarmTime.getTimeInMillis();
-			long intervalMillis = 60*60*1000; //repeat every day
+			long intervalMillis = DCIConfig.REPEAT_ALARM_TIME_MS; //repeat every day
 			
 			alarm.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtMillis, intervalMillis, operation);
 		}

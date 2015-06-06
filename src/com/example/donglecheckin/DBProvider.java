@@ -5,7 +5,6 @@ import java.util.Calendar;
 
 import com.example.donglecheckin.DCIConfig.CheckStatus;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -16,15 +15,15 @@ import android.util.Log;
 
 public class DBProvider{
 	public static SQLiteDatabase messagesDB;
-	private Activity mainActivity;
+	private Context mainActivity;
 	
 	private int _idKey = 0;
-	private int stateKey = 0;
-	private int locationKey = 0;
-	private int TSKey = 0;
-	private int precisionKey = 0;
+	private int stateKey = 1;
+	private int locationKey = 2;
+	private int TSKey = 3;
+	private int precisionKey = 4;
 	
-	public DBProvider(Activity MainActivity, String DBName) {
+	public DBProvider(Context MainActivity, String DBName) {
 		super();
 		Log.d("DBProvider","Constructor:DBName "+DBName);
 		this.mainActivity = MainActivity;
@@ -41,6 +40,7 @@ public class DBProvider{
 		Location location;
 		LocationManager locationManager;
 		String timestamp;
+		int precision=0;
 		
 		Log.d("DBProvider", "DBAdd - status:"+status);
 		switch(status) {
@@ -61,30 +61,40 @@ public class DBProvider{
 		
 		//check if we can add it
 		final Cursor c = messagesDB.rawQuery("SELECT * FROM DCILogs ORDER BY _id DESC", null);
-		if((c.getCount() == 5) && (status != CheckStatus.DCI_LOGGED_IN)) {
-			c.moveToLast();
-			if(c.getString(stateKey).equals(StatusString)) {
-				DBDelete(c.getInt(_idKey));
+		Boolean isLoggedInLast4=false;
+		
+		for(int n=0; (n<4) && (n<c.getCount()) ; n++) {
+			c.moveToPosition(n);
+			if(c.getString(stateKey).equals("DCI_LOGGED_IN")) {
+				isLoggedInLast4=true;
+				break;
 			}
-			else {
-				c.moveToPrevious();
-				if (c.getString(stateKey).equals(StatusString)) {
+		}
+		
+		if(c.getCount() >= 5) {
+			if(status != CheckStatus.DCI_LOGGED_IN) {
+				if(isLoggedInLast4) {
 					c.moveToLast();
 					DBDelete(c.getInt(_idKey));
 				}
 				else {
-					//No room!
-					Log.d("DBProvider", "DBAdd - NO ROOM!");
-					return;
+					Log.d("DBProvider#ADD", "Deleting First, there is no DCI_LOGGED_IN in last4");
+					c.moveToFirst();
+					DBDelete(c.getInt(_idKey));
 				}
 			}
-		}		
+			else {
+				c.moveToLast();
+				DBDelete(c.getInt(_idKey));
+			}
+		}
 		
 		locationManager = (LocationManager) mainActivity.getSystemService(Context.LOCATION_SERVICE);
 		location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 		try {
 			locationString = "Latitude:"+location.getLatitude()+";Longitude:"+location.getLongitude();
 			Log.d("DBProvider", "DBAdd - locationString:"+locationString);
+			precision++;
 		}
 		catch(NullPointerException e) {
 			locationString = "Latitude:"+"00"+";Longitude:"+"00";
@@ -97,10 +107,10 @@ public class DBProvider{
 		try {
 			Log.d("DBProvider", "Inserting the msg now");
 			messagesDB.beginTransactionNonExclusive();
-			Log.d("DBProvider", "INSERT INTO DCILogs(State, Location, TS) VALUES('"+StatusString+"','"+
-					locationString+"','"+timestamp+"',0"+"');");
-			messagesDB.execSQL("INSERT INTO DCILogs(State, Location, TS) VALUES('"+StatusString+"','"+
-					locationString+"','"+timestamp+"',0"+"');");
+			Log.d("DBProvider", "INSERT INTO DCILogs(State, Location, TS, Precision) VALUES('"+StatusString+"','"+
+					locationString+"','"+timestamp+"','"+precision+"');");
+			messagesDB.execSQL("INSERT INTO DCILogs(State, Location, TS, Precision) VALUES('"+StatusString+"','"+
+					locationString+"','"+timestamp+"','"+precision+"');");
 			messagesDB.setTransactionSuccessful();
 			messagesDB.endTransaction();
 		} catch (SQLException e) {
@@ -116,6 +126,7 @@ public class DBProvider{
 		// Retrieving all records
 		Log.d("DBProvider","DB OPeration: "+"SELECT * FROM DCILogs ORDER BY _id DESC");
 		final Cursor c = messagesDB.rawQuery("SELECT * FROM DCILogs ORDER BY _id DESC", null);
+		//Log.d("DBProvider", "DBGet - "+c.getString(1)+c.getString(2)+c.getString(3));
 		ArrayList<DCILogClass> classesArray = new ArrayList<DCILogClass>();
 		DCIConfig.CheckStatus status;
 		
@@ -142,23 +153,38 @@ public class DBProvider{
 	
 	public void DBDelete(int id) {
 		//delete the entry and notify adapter change
-		Log.d("DBProvider","DB OPeration: "+"DELETE FROM DCILogs WHERE _id="+(id));
+		Log.d("DBDelete","DB OPeration: "+"DELETE FROM DCILogs WHERE _id="+(id));
 		messagesDB.execSQL("DELETE FROM DCILogs WHERE _id="+(id));
 	}
 	
-	public void DBUpdateLocation(Location location) {
-		Log.d("DBProvider","DBUpdateLocation - "+location.getLatitude()+" : "+location.getLatitude());
-		Log.d("DBProvider","DB OPeration: "+"SELECT * FROM DCILogs ORDER BY _id DESC");
-		final Cursor c = messagesDB.rawQuery("SELECT * FROM DCILogs ORDER BY _id DESC", null);
-		
-		while(c.moveToNext()) {
-			if(c.getInt(precisionKey) == 0) {
-				Log.d("DBProvider", "UPDATE messages SET Precision='1' WHERE _id="+(c.getInt(_idKey)));
-            	messagesDB.execSQL("UPDATE messages SET Precision='1' WHERE _id="+(c.getInt(_idKey)));
+	public void DBUpdateLocation(Location location, Boolean isBetter) {
+		try {
+			Log.d("DBUpdateLocation","DBUpdateLocation - "+location.getLatitude()+" : "+location.getLongitude());
+			Log.d("DBUpdateLocation","DB OPeration: "+"SELECT * FROM DCILogs ORDER BY _id DESC");
+			final Cursor c = messagesDB.rawQuery("SELECT * FROM DCILogs ORDER BY _id DESC", null);
+			
+			while(c.moveToNext()) {
+				int precision = c.getInt(precisionKey);
+				Log.d("DBUpdateLocation", "c.getInt(precisionKey) = "+c.getInt(precisionKey));
+				if(precision == 0) {
+					precision++;
+					Log.d("DBUpdateLocation", "UPDATE DCILogs SET Precision='"+precision+"', Location='Latitude:"+location.getLatitude()+";Longitude:"+location.getLongitude()+"' WHERE _id="+(c.getInt(_idKey)));
+	            	messagesDB.execSQL("UPDATE DCILogs SET Precision='"+precision+"', Location='Latitude:"+location.getLatitude()+";Longitude:"+location.getLongitude()+"' WHERE _id="+(c.getInt(_idKey)));
+				}
+				else if((precision < DCIConfig.LOCATION_CHANGE_COUNT) && isBetter && (c.isFirst())) {
+					precision++;
+					Log.d("DBUpdateLocation", "isBetter UPDATE DCILogs SET Precision='"+precision+"', Location='Latitude:"+location.getLatitude()+";Longitude:"+location.getLongitude()+"' WHERE _id="+(c.getInt(_idKey)));
+	            	messagesDB.execSQL("UPDATE DCILogs SET Precision='"+precision+"', Location='Latitude:"+location.getLatitude()+";Longitude:"+location.getLongitude()+"' WHERE _id="+(c.getInt(_idKey)));
+				}
+				else if(precision > DCIConfig.LOCATION_CHANGE_COUNT)
+				{
+					Log.d("DBUpdateLocation", "Returning DBUpdateLocation!");
+					return;
+				}
 			}
-			else {
-				return;
-			}
+		}
+		catch (Exception c) {
+			Log.d("DBProvider", "Null exception in location update");
 		}
 	}
 }

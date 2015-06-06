@@ -16,231 +16,354 @@
         	android:layout_height="wrap_content"
         	android:layout_weight="1"
         	android:background="@color/white"
-        	android:layout_marginTop="0dp">
-	            <RelativeLayout 
-				    android:id="@+id/imageLayout1"
-				    android:layout_width="@dimen/image_layout_width"
-				    android:layout_height="fill_parent"
-				    android:background="@color/black">
-
-				    <ImageView
-				        android:id="@+id/imageView1"
-				        android:layout_width="fill_parent"
-				        android:layout_height="fill_parent"
-				        android:src="@drawable/green"
-				        android:scaleType="fitXY"
-				        android:adjustViewBounds="true" />
-
-				</RelativeLayout>
+        	android:layout_marginTop="0dp"
+        	
+        	android:paddingLeft="@dimen/full_layout_left_padding">
 			    <LinearLayout
-			        android:orientation="vertical"
+			        android:id="@+id/ll1"
 			        android:layout_width="match_parent"
 			        android:layout_height="match_parent"
-			        android:layout_toEndOf="@id/imageLayout1" 
-			        android:background="@color/white">
+			        android:background="@drawable/linear_back"
+			        android:paddingLeft="@dimen/layout_left_padding"
+			        android:paddingTop="@dimen/layout_top_padding"
+			        android:paddingBottom="@dimen/layout_bottom_padding"
+			        android:paddingRight="@dimen/layout_right_padding">
 
 				        <TextView
 				            android:id="@+id/status1"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
+				            android:layout_width="0dp"
+				            android:layout_weight="1.1"
+				            android:layout_height="fill_parent"
+				            android:textAlignment="gravity"
+				            android:gravity="center"
+				            android:text="Test Status"
 				            android:layout_marginStart="@dimen/status_layout_margin"
 				            android:layout_marginTop="@dimen/status_layout_margin"
-				            android:layout_weight="@integer/status_weight" />
+				            
+				            
+				            android:textAppearance="?android:attr/textAppearanceLarge"
+				            android:fontFamily="sans-serif-thin" />
+				       <ImageView
+					        android:id="@+id/imageView1"
+					        android:layout_width="0dp"
+				            android:layout_weight="1"
+					        android:layout_height="fill_parent"
+					        android:src="@drawable/green"
+					        android:scaleType="fitCenter"
+					        android:adjustViewBounds="true" />
 
-				        <TextView
-				            android:id="@+id/location1"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_marginLeft="@dimen/location_layout_margin"
-				            android:layout_marginTop="@dimen/location_layout_margin"
-				            android:layout_marginBottom="@dimen/location_layout_margin"
-				            android:layout_marginRight="@dimen/location_layout_margin"
-				            android:layout_weight="@integer/location_weight"/>
-
-				        <TextView
-				            android:id="@+id/timestamp1"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_marginStart="@dimen/timestamp_layout_margin"
-				            android:layout_marginTop="@dimen/timestamp_layout_margin"
-				            android:layout_weight="@integer/timestamp_weight"/>
-
+				        <LinearLayout 
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:orientation="vertical">
+					        <TextView
+					            android:id="@+id/location1"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:text="Test Location"
+					            android:gravity="bottom"
+					            android:layout_marginLeft="@dimen/location_layout_margin"
+					            android:layout_marginTop="@dimen/location_layout_margin"
+					            android:layout_marginBottom="@dimen/location_layout_margin"
+					            android:layout_marginRight="@dimen/location_layout_margin"
+					            android:layout_weight="@integer/location_weight"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin"/>
+	
+					        <TextView
+					            android:id="@+id/timestamp1"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:text="Test Timestamp"
+					            android:gravity="top"
+					            android:layout_marginStart="@dimen/timestamp_layout_margin"
+					            android:layout_marginTop="@dimen/timestamp_layout_margin"
+					            android:layout_weight="@integer/timestamp_weight"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin"/>
+						</LinearLayout>
 			    </LinearLayout>
         </RelativeLayout> 
         <RelativeLayout
             android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
-        	android:layout_weight="1">
-	            <RelativeLayout 
-				    android:id="@+id/imageLayout2"
-				    android:layout_width="@dimen/image_layout_width"
-				    android:layout_height="match_parent">
-				    <ImageView
-				            android:id="@+id/imageView2"
-				            android:layout_width="fill_parent"
-				            android:layout_height="fill_parent"
-				            android:src="@drawable/green"
-				            android:scaleType="fitXY"
-				        	android:adjustViewBounds="true"  />
-				</RelativeLayout>
+        	android:layout_weight="1"
+        	android:paddingLeft="@dimen/full_layout_left_padding">
+
 			    <LinearLayout
-			        android:orientation="vertical"
+			        android:id="@+id/ll2"
 			        android:layout_width="match_parent"
 			        android:layout_height="match_parent"
-			        android:layout_toEndOf="@id/imageLayout2" >
+			        android:background="@drawable/linear_back"
+			        android:paddingLeft="@dimen/layout_left_padding"
+			        android:paddingTop="@dimen/layout_top_padding"
+			        android:paddingBottom="@dimen/layout_bottom_padding"
+			        android:paddingRight="@dimen/layout_right_padding" >
 				        <TextView
 				            android:id="@+id/status2"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/status_weight"
+				            android:layout_width="0dp"
+				            android:layout_weight="1.1"
+				            android:layout_height="fill_parent"
 				            android:layout_marginStart="@dimen/status_layout_margin"
-				            android:layout_marginTop="@dimen/status_layout_margin" />
-				        <TextView
-				            android:id="@+id/location2"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/location_weight"
-				            android:layout_marginStart="@dimen/location_layout_margin"
-				            android:layout_marginTop="@dimen/location_layout_margin" />
-				        <TextView
-				            android:id="@+id/timestamp2"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/timestamp_weight"
-				            android:layout_marginStart="@dimen/timestamp_layout_margin"
-				            android:layout_marginTop="@dimen/timestamp_layout_margin" />
+				            android:layout_marginTop="@dimen/status_layout_margin" 
+				            
+				            android:gravity="center"
+				            
+				            android:textAppearance="?android:attr/textAppearanceLarge"
+				            android:fontFamily="sans-serif-thin"/>
+				        
+				        <ImageView
+				            android:id="@+id/imageView2"
+				            android:layout_width="0dp"
+				            android:layout_weight="1.1"
+				            android:layout_height="fill_parent"
+				            android:src="@drawable/green"
+				            android:scaleType="fitCenter"
+				        	android:adjustViewBounds="true"  />
+				        <LinearLayout 
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:orientation="vertical">
+					        <TextView
+					            android:id="@+id/location2"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/location_weight"
+					            android:layout_marginStart="@dimen/location_layout_margin"
+					            android:layout_marginTop="@dimen/location_layout_margin"
+					            
+					            android:gravity="bottom"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin" />
+					        <TextView
+					            android:id="@+id/timestamp2"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/timestamp_weight"
+					            android:layout_marginStart="@dimen/timestamp_layout_margin"
+					            android:layout_marginTop="@dimen/timestamp_layout_margin"
+					            
+					            android:gravity="top"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin" />
+					    </LinearLayout>
 			    </LinearLayout>
         </RelativeLayout> 
         <RelativeLayout
             android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
-        	android:layout_weight="1">
-	            <RelativeLayout 
-				    android:id="@+id/imageLayout3"
-				    android:layout_width="@dimen/image_layout_width"
-				    android:layout_height="match_parent">
-				    <ImageView
-				            android:id="@+id/imageView3"
-				            android:layout_width="fill_parent"
-				            android:layout_height="fill_parent"
-				            android:src="@drawable/green"
-				            android:scaleType="fitXY"
-				        	android:adjustViewBounds="true" />
-				</RelativeLayout>
+        	android:layout_weight="1"
+        	android:paddingLeft="@dimen/full_layout_left_padding">
+
 			    <LinearLayout
-			        android:orientation="vertical"
+			        android:id="@+id/ll3"
 			        android:layout_width="match_parent"
 			        android:layout_height="match_parent"
-			        android:layout_toEndOf="@id/imageLayout3" >
+			        android:paddingLeft="@dimen/layout_left_padding"
+			        android:background="@drawable/linear_back"
+			        android:paddingTop="@dimen/layout_top_padding"
+			        android:paddingBottom="@dimen/layout_bottom_padding"
+			        android:paddingRight="@dimen/layout_right_padding" >
 				        <TextView
 				            android:id="@+id/status3"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/status_weight"
+				            android:layout_width="0dp"
+				            android:layout_weight="1.1"
+				            android:layout_height="fill_parent"
 				            android:layout_marginStart="@dimen/status_layout_margin"
-				            android:layout_marginTop="@dimen/status_layout_margin" />
-				        <TextView
-				            android:id="@+id/location3"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/location_weight"
-				            android:layout_marginStart="@dimen/location_layout_margin"
-				            android:layout_marginTop="@dimen/location_layout_margin" />
-				        <TextView
-				            android:id="@+id/timestamp3"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/timestamp_weight"
-				            android:layout_marginStart="@dimen/timestamp_layout_margin"
-				            android:layout_marginTop="@dimen/timestamp_layout_margin" />
+				            android:layout_marginTop="@dimen/status_layout_margin" 
+				            
+				            android:gravity="center"
+				            
+				            android:textAppearance="?android:attr/textAppearanceLarge"
+				            android:fontFamily="sans-serif-thin"/>
+				        <ImageView
+				            android:id="@+id/imageView3"
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:src="@drawable/green"
+				            android:scaleType="fitCenter"
+				        	android:adjustViewBounds="true" />
+				        <LinearLayout 
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:orientation="vertical">
+					        <TextView
+					            android:id="@+id/location3"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/location_weight"
+					            android:layout_marginStart="@dimen/location_layout_margin"
+					            android:layout_marginTop="@dimen/location_layout_margin" 
+					            
+					            android:gravity="bottom"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin"/>
+					        <TextView
+					            android:id="@+id/timestamp3"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/timestamp_weight"
+					            android:layout_marginStart="@dimen/timestamp_layout_margin"
+					            android:layout_marginTop="@dimen/timestamp_layout_margin"
+					            
+					            android:gravity="top"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin" />
+					    </LinearLayout>
 			    </LinearLayout>
         </RelativeLayout> 
         <RelativeLayout
             android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
-        	android:layout_weight="1">
-	            <RelativeLayout 
-				    android:id="@+id/imageLayout4"
-				    android:layout_width="@dimen/image_layout_width"
-				    android:layout_height="match_parent">
-				    <ImageView
-				            android:id="@+id/imageView4"
-				            android:layout_width="fill_parent"
-				            android:layout_height="fill_parent"
-				            android:src="@drawable/green"
-				            android:scaleType="fitXY"
-				        	android:adjustViewBounds="true" />
-				</RelativeLayout>
+        	android:layout_weight="1"
+        	android:paddingLeft="@dimen/full_layout_left_padding">
+	           
 			    <LinearLayout
-			        android:orientation="vertical"
+			        android:id="@+id/ll4"
 			        android:layout_width="match_parent"
 			        android:layout_height="match_parent"
-			        android:layout_toEndOf="@id/imageLayout4" >
+			        android:paddingLeft="@dimen/layout_left_padding"
+			        android:paddingTop="@dimen/layout_top_padding"
+			        android:paddingBottom="@dimen/layout_bottom_padding"
+			        android:paddingRight="@dimen/layout_right_padding" 
+			        android:background="@drawable/linear_back">
 				        <TextView
 				            android:id="@+id/status4"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/status_weight"
+				            android:layout_width="0dp"
+				            android:layout_weight="1.1"
+				            android:layout_height="fill_parent"
 				            android:layout_marginStart="@dimen/status_layout_margin"
-				            android:layout_marginTop="@dimen/status_layout_margin"/>
-				        <TextView
-				            android:id="@+id/location4"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/location_weight"
-				            android:layout_marginStart="@dimen/location_layout_margin"
-				            android:layout_marginTop="@dimen/location_layout_margin"/>
-				        <TextView
-				            android:id="@+id/timestamp4"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/timestamp_weight"
-				            android:layout_marginStart="@dimen/timestamp_layout_margin"
-				            android:layout_marginTop="@dimen/timestamp_layout_margin"/>
+				            android:layout_marginTop="@dimen/status_layout_margin"
+				            
+				            android:gravity="center"
+				            
+				            android:textAppearance="?android:attr/textAppearanceLarge"
+				            android:fontFamily="sans-serif-thin"/>
+				        <ImageView
+				            android:id="@+id/imageView4"
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:src="@drawable/green"
+				            android:scaleType="fitCenter"
+				        	android:adjustViewBounds="true" />
+				        <LinearLayout 
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:orientation="vertical">
+					        <TextView
+					            android:id="@+id/location4"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/location_weight"
+					            android:layout_marginStart="@dimen/location_layout_margin"
+					            android:layout_marginTop="@dimen/location_layout_margin"
+					            
+					            android:gravity="bottom"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin"/>
+					        <TextView
+					            android:id="@+id/timestamp4"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/timestamp_weight"
+					            android:layout_marginStart="@dimen/timestamp_layout_margin"
+					            android:layout_marginTop="@dimen/timestamp_layout_margin"
+					            
+					            android:gravity="top"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin"/>
+					        </LinearLayout>
 			    </LinearLayout>
         </RelativeLayout>                        
         <RelativeLayout
             android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
-        	android:layout_weight="1">
-	            <RelativeLayout 
-				    android:id="@+id/imageLayout5"
-				    android:layout_width="@dimen/image_layout_width"
-				    android:layout_height="match_parent">
-				    <ImageView
-				            android:id="@+id/imageView5"
-				            android:layout_width="fill_parent"
-				            android:layout_height="fill_parent"
-				            android:src="@drawable/green"
-				            android:scaleType="fitXY"
-				        	android:adjustViewBounds="true" />
-				</RelativeLayout>
+        	android:layout_weight="1"
+        	android:paddingLeft="@dimen/full_layout_left_padding">
+
 			    <LinearLayout
-			        android:orientation="vertical"
+			        android:id="@+id/ll5"
 			        android:layout_width="match_parent"
 			        android:layout_height="match_parent"
-			        android:layout_toEndOf="@id/imageLayout5" >
+			        android:paddingLeft="@dimen/layout_left_padding"
+			        android:paddingTop="@dimen/layout_top_padding"
+			        android:paddingBottom="@dimen/layout_bottom_padding"
+			        android:paddingRight="@dimen/layout_right_padding"
+			        android:background="@drawable/linear_back" >
 				        <TextView
 				            android:id="@+id/status5"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/status_weight"
+				            android:layout_width="0dp"
+				            android:layout_weight="1.1"
+				            android:layout_height="fill_parent"
 				            android:layout_marginStart="@dimen/status_layout_margin"
-				            android:layout_marginTop="@dimen/status_layout_margin"/>
-				        <TextView
-				            android:id="@+id/location5"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/location_weight"
-				            android:layout_marginStart="@dimen/location_layout_margin"
-				            android:layout_marginTop="@dimen/location_layout_margin"/>
-				        <TextView
-				            android:id="@+id/timestamp5"
-				            android:layout_width="match_parent"
-				            android:layout_height="0dp"
-				            android:layout_weight="@integer/timestamp_weight"
-				            android:layout_marginStart="@dimen/timestamp_layout_margin"
-				            android:layout_marginTop="@dimen/timestamp_layout_margin"/>
+				            android:layout_marginTop="@dimen/status_layout_margin"
+				            
+				            android:gravity="center"
+				            
+				            android:textAppearance="?android:attr/textAppearanceLarge"
+				            android:fontFamily="sans-serif-thin"/>
+				        <ImageView
+				            android:id="@+id/imageView5"
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:src="@drawable/green"
+				            android:scaleType="fitCenter"
+				        	android:adjustViewBounds="true" />
+				        <LinearLayout 
+				            android:layout_width="0dp"
+				            android:layout_weight="1"
+				            android:layout_height="fill_parent"
+				            android:orientation="vertical">
+					        <TextView
+					            android:id="@+id/location5"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/location_weight"
+					            android:layout_marginStart="@dimen/location_layout_margin"
+					            android:layout_marginTop="@dimen/location_layout_margin"
+					            
+					            android:gravity="bottom"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin"/>
+					        <TextView
+					            android:id="@+id/timestamp5"
+					            android:layout_width="match_parent"
+					            android:layout_height="0dp"
+					            android:layout_weight="@integer/timestamp_weight"
+					            android:layout_marginStart="@dimen/timestamp_layout_margin"
+					            android:layout_marginTop="@dimen/timestamp_layout_margin"
+					            
+					            android:gravity="top"
+					            
+					            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+	            				android:textSize="10dp"
+	            				android:fontFamily="sans-serif-thin"/>
+					        </LinearLayout>
 			    </LinearLayout>
         </RelativeLayout>                        
 </LinearLayout>

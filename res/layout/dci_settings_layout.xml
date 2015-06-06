@@ -4,58 +4,181 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        <LinearLayout 
+        	android:layout_width="fill_parent"
+        	android:layout_height="0dp"
+        	android:layout_weight="1"
+        	android:orientation="vertical">
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="1">
+        	    <TextView
+			        android:layout_width="fill_parent"
+			        android:gravity="center"
+			        android:layout_height="fill_parent"
+			        android:background="@color/green"
+			        android:textColor="@color/white"
+			        android:text="@string/alarm1element"/>
+        	</LinearLayout>
+		    
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="2">
+				<CheckBox
+		        	android:id="@+id/checkBox1"
+		        	android:layout_width="0dp"
+		        	android:layout_weight="0.1"
+		        	android:layout_gravity="center_vertical"
+		        	android:layout_height="wrap_content"
+		        	android:text="@string/alarm1enable" />
+				
+				<TextView
+			        android:id="@+id/alarm1Text"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.9"
+			        android:gravity="center"
+			        android:layout_height="fill_parent"/>
+			</LinearLayout>
+		
+    	</LinearLayout>
 
-    <TextView
-        android:id="@+id/alarm1Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox" />
-
-    <TextView
-        android:id="@+id/alarm2Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox" />
-
-    <TextView
-        android:id="@+id/alarm3Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <LinearLayout 
+            android:layout_width="fill_parent"
+        	android:layout_height="0dp"
+        	android:layout_weight="1"
+        	android:orientation="vertical">
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="1">
+        	    <TextView
+			        android:layout_width="fill_parent"
+			        android:gravity="center"
+			        android:layout_height="fill_parent"
+			        android:background="@color/green"
+			        android:textColor="@color/white"
+			        android:text="@string/alarm2element"/>
+        	</LinearLayout>
+		    
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="2">
+			    <CheckBox
+			        android:id="@+id/checkBox2"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.1"
+			        android:layout_height="fill_parent"
+			        android:layout_gravity="center_vertical"
+			        android:text="@string/alarm2enable" />
+			
+			    <TextView
+			        android:id="@+id/alarm2Text"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.9"
+			        android:gravity="center"
+			        android:layout_height="fill_parent" />
+			</LinearLayout>
+		</LinearLayout>
+	
+        <LinearLayout 
+            android:layout_width="fill_parent"
+        	android:layout_height="0dp"
+        	android:layout_weight="1"
+        	android:orientation="vertical">
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="1">
+        	    <TextView
+			        android:layout_width="fill_parent"
+			        android:gravity="center"
+			        android:layout_height="fill_parent"
+			        android:background="@color/green"
+			        android:textColor="@color/white"
+			        android:text="@string/alarm3element"/>
+        	</LinearLayout>
+		    
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="2">
+			    <CheckBox
+			        android:id="@+id/checkBox3"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.1"
+			        android:layout_height="fill_parent"
+			        android:layout_gravity="center_vertical"
+			        android:text="@string/alarm3enable" />
+			
+			    <TextView
+			        android:id="@+id/alarm3Text"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.9"
+			        android:gravity="center"
+			        android:layout_height="fill_parent" />
+			</LinearLayout>
+		</LinearLayout>
+	
+        <LinearLayout 
+            android:layout_width="fill_parent"
+        	android:layout_height="0dp"
+        	android:layout_weight="1"
+        	android:orientation="vertical">
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="1">
+        	    <TextView
+			        android:layout_width="fill_parent"
+			        android:gravity="center"
+			        android:layout_height="fill_parent"
+			        android:background="@color/green"
+			        android:textColor="@color/white"
+			        android:text="@string/OOFelement"/>
+        	</LinearLayout>
+		    
+        	<LinearLayout 
+        	    android:layout_width="fill_parent"
+        		android:layout_height="0dp"
+        		android:layout_weight="2">
+		    
+			    <CheckBox
+			        android:id="@+id/checkBox4"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.1"
+			        android:layout_height="fill_parent"
+			        android:layout_gravity="center_vertical"
+			        android:text="@string/OOFenable" />
+			
+			    <TextView
+			        android:id="@+id/textView4"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.40"
+			        android:layout_height="fill_parent"
+			        android:gravity="center"
+			        android:text="@string/OOFstart" />
+			    
+			    <TextView
+			        android:id="@+id/textViewCenter"
+			        android:layout_width="0dp"
+			        android:layout_height="fill_parent"
+			        android:layout_weight="0.10"
+			        android:gravity="center"
+			        android:text="to"
+			        android:textColor="@color/lgray"
+			        android:textStyle="italic" />
+			
+			    <TextView
+			        android:id="@+id/textView5"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.40"
+			        android:layout_height="fill_parent"
+			        android:gravity="center"
+			        android:text="@string/OOFend" />
+			</LinearLayout>
+		</LinearLayout>
 
 </LinearLayout>

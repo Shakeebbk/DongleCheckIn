@@ -9,5 +9,16 @@
     <dimen name="status_layout_margin">0dp</dimen>
     <dimen name="timestamp_layout_margin">0dp</dimen>
     <dimen name="location_layout_margin">0dp</dimen>
+    
+    <dimen name="layout_top_padding">10dp</dimen>
+    <dimen name="layout_bottom_padding">10dp</dimen>
+    <dimen name="layout_left_padding">5dp</dimen>
+    <dimen name="layout_right_padding">15dp</dimen>
+    
+    <dimen name="full_layout_left_padding">5dp</dimen>
+    
+    <dimen name="card_left_margin">260dp</dimen>
+    <dimen name="card_left_padding">5dp</dimen>
+    <dimen name="card_right_margin">-260dp</dimen>
 
 </resources>

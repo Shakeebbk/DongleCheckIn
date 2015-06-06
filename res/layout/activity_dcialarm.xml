@@ -1,12 +1,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AlarmLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.donglecheckin.DCIAlarm" >
+    tools:context="com.example.donglecheckin.DCIAlarm"
+    android:clickable="true"
+	android:focusable="true"
+	android:focusableInTouchMode="true" >
 
     <Button
         android:id="@+id/CheckInButton"
@@ -14,9 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:text="CheckIn"
+        android:visibility="invisible"
         android:background="@color/lgreen" />
     <Button
         android:id="@+id/AwayButton"
@@ -24,9 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/CheckInButton"
         android:layout_marginTop="18dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:text="Away"
+        android:visibility="invisible"
         android:background="@color/lgray" />
     <Button
         android:id="@+id/LostButton"
@@ -34,9 +36,77 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/AwayButton"
         android:layout_marginTop="18dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:text="Lost"
+        android:visibility="invisible"
         android:background="@color/fred" />
+    <LinearLayout 
+        android:id="@+id/alarmlinear"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/alarm3"
+        >
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/alarm_space_weight"
+            android:background="@color/white"/>
+
+        <TextView 
+            android:id="@+id/CheckInCard"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/alarm_cards_weight"
+            android:background="@color/green"
+            android:layout_gravity="right"
+            android:text="CheckIn"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/card_left_margin"
+            android:layout_marginRight="@dimen/card_right_margin"
+            android:paddingLeft="@dimen/card_left_padding"/>
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/alarm_space_weight"
+            android:background="@color/white"/>
+        <TextView 
+            android:id="@+id/AwayCard"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/alarm_cards_weight"
+            android:background="@color/lgreen"
+            android:text="Away"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/card_left_margin"
+            android:layout_marginRight="@dimen/card_right_margin"
+            android:paddingLeft="@dimen/card_left_padding"/>
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/alarm_space_weight"
+            android:background="@color/white"/>
+        <TextView 
+            android:id="@+id/LostCard"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/alarm_cards_weight"
+            android:background="@color/fred"
+            android:text="Lost"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/card_left_margin"
+            android:layout_marginRight="@dimen/card_right_margin"
+            android:paddingLeft="@dimen/card_left_padding"/>
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="@integer/alarm_space_weight"
+            android:background="@color/white"/>
+        
+    </LinearLayout>"
 
 </RelativeLayout>
