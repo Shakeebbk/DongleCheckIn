@@ -100,7 +100,7 @@ public class DCIAlarm extends Activity implements SimpleGestureListener,  View.O
 		if((currentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) ||
 				(currentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)) {
 			//end the alarm activity on weekends
-			//finish();
+			finish();
 		}
 		
 		//check for OOF
